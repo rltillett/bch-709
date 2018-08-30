@@ -8,6 +8,8 @@ Sign up for an account at github. Choose any username you wish and use your unr.
 Create a New Repository using the github web interface (look for a green button labelled "New" or "Create New Repository." Name your repository BCH_709 or similar. Optionally add a description. Leave it public. Initialize it with a README.md. Hit the create button. Now edit the readme by clicking the pencil icon. Write one or more sentences of content into this readme.
 
 **Warning: the following instructions require copy/paste from the WebCampus version of this document**
+
+
 Create a new file using the white button labelled `Create new file`. Name this file `Assignment_1.md`. Paste this paragraph from WebCampus (yes this paragraph) into the file in the **Edit new file** box. Click the _Preview_ tab and check out how it looks. Now scroll down a little to the `Commit new file` section of the page. It has two text boxes. You can leave the 1-line box as-is or write a short description of your choosing. In the larger box which says `Add an optional description`, describe what you saw/see when you hit **_Preview._** Click the green button to commit.
 
 Github sends you back to the base of the repository after you commit files like you just did. Click on the Assignment_1.md file name. Finally, go to your browser's URL bar, select, copy, and paste the whole URL for Assignment_1.md as your answer to Question 2.
