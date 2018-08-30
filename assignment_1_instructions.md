@@ -1,5 +1,5 @@
 # Assignment 1: Setting up services.
-_This assignment uses WebCampus. Follow the instructions and submit answers to the questions in the WebCampus interface._
+_This assignment uses WebCampus. Follow the instructions and submit answers to the questions using the WebCampus interface. If the WebCampus interface is confusing or non-operable, email your answers to instructor directly._
 
 ## Question 1
 Sign up for an account at github. Choose any username you wish and use your unr.edu email if you have one. If you already have an account at github, you may re-use it or create a new one just for this class -- it's up to you. Tell me the username you chose:
