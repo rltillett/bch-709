@@ -8,6 +8,7 @@ Yes/no. In other contexts, faster/slower
 - alternate times?
 
 ## Syllabus
+(visit webcampus page)
 
 ### Course style
 Hands on, learning-by-doing
