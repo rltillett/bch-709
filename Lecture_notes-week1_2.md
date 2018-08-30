@@ -1,4 +1,5 @@
-# Lecture notes 1
+# Lecture notes - week 1, Thursday
+_Aug 30, 2018_
 
 ## Prefatory Remarks
 ### Green card / red card voting
