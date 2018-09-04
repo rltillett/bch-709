@@ -31,6 +31,7 @@ There will be prompts for discussion, and for each of these, you'll discuss with
 ---
 ### Genomics Organization Section 1
 [Data Tidiness](https://datacarpentry.org/organization-genomics/01-tidiness/index.html)
+
 Notes: Additional valuable advice for working in spreadsheets can be found in another Data Carpentry module, from their [Ecology-focused lessons](http://www.datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/)
 
 ---
@@ -45,6 +46,7 @@ A storage solution available here at UNR
 ---
 ### Genomics Organization Section 3
 [Examining Data on the NCBI SRA Database](https://datacarpentry.org/organization-genomics/03-ncbi-sra/index.html)
+
 Notes: How big is SRA now? [This big](https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/)
 
 ---
