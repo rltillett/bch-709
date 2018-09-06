@@ -1,4 +1,4 @@
-# BCH 709 Lecture notes: Week 2, part 1
+# BCH 709 Lecture notes: Week 2, part 2
 _September 6, 2018_
 ## Roadmap
 ### Previously:
