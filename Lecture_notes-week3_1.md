@@ -13,7 +13,7 @@ _September 11, 2018_
 - Data Carpentry's Navigating Files and Directories
 
 ---
-
+###
 ## Logging in to our remote server (*reminder*)
 ### Mac OS and linux
 Interface with the remote server will be done with an app named Terminal, already on your system
@@ -36,15 +36,18 @@ Here's the Home page for all their "Shell genomics lessons" [Data Carpentry Shel
 (https://datacarpentry.org/shell-genomics/01-introduction/index.html)
 Estimated time: 30 min
 The lesson covers basics of the look and use of the command line
-- commands
+- shell commands
 	- clear
 	- pwd
 	- ls
 	- cd
 	- man
-- features
+- concepts / features
 	- modifying your prompt
+		- by setting shell variable `PS1`
 	- command options/flags
+		- `ls -F`
+		- using `man` to discover options & syntax
 	- tab completion
 
 ---
@@ -53,18 +56,17 @@ The lesson covers basics of the look and use of the command line
 (https://datacarpentry.org/shell-genomics/02-the-filesystem/index.html)
 Estimated time: 50 min
 The lesson covers file and directory interaction, inside and outside a working directory, full/relative paths, and discovering hidden files
-- commands
+- shell commands
 	- cd
 	- pwd
 	- ls
 	- cd
-	- man
-- shell shorthand
-	- the `..` shorthand for "up one folder"
-	- the `/` shorthand for "root"
-	- the `~` shorthand for "my home folder"
 - concepts
 	- paths
 		- full paths
 		- relative paths
-	- tab completion
+	- shell shorthand
+		- the `..` shorthand for "up one folder"
+		- the `/` shorthand for "root"
+		- the `~` shorthand for "my home folder"
+	- hidden files
