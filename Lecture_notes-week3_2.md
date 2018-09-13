@@ -1,6 +1,12 @@
 # BCH 709 Lecture notes: Week 3, part 2
 
 _September 13, 2018_
+When you arrive:
+
+- Open our Gitter chatroom
+- Find and use the link to open these notes
+- Log in to our linux server as before
+  - Switch from the eduroam wifi to a hotspot if you have trouble
 
 ## Roadmap
 
