@@ -1,6 +1,7 @@
 # BCH 709 Lecture notes: Week 3, part 2
 
 _September 13, 2018_
+
 When you arrive:
 
 - Open our Gitter chatroom
