@@ -60,7 +60,7 @@ The lesson introduces these commands and concepts:
 
 [Data Carpentry - Data Wrangling 00: Assessing Read Quality](https://rltillett.github.io/wrangling-genomics/00-quality-control/index.html)
 
-Including additional instruction on file transfter from [Data Roundtripping](https://rltillett.github.io/cloud-genomics/04-data-roundtripping/index.html)
+Including additional instruction on file transfer from [Data Roundtripping](https://rltillett.github.io/cloud-genomics/04-data-roundtripping/index.html)
 
 ---
 
