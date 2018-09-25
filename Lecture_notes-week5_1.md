@@ -50,7 +50,7 @@ The lesson introduces these commands and concepts:
 
 ---
 
-## Assignment 4: Shell Genomics 05 Project Organization
+## Assignment 4: Shell Genomics 06 Project Organization
 
 [Shell Genomics 06 Project Organization](https://datacarpentry.org/shell-genomics/06-organization/index.html)
 
