@@ -5,7 +5,7 @@ When you arrive:
 
 - Grab post-its
 - Open our Gitter chatroom
-- Find and use the link to open these notes
+- Find and use the link to open these notes in a web browser
 - Log in to our linux server
    - Switch your wifi to my hotspot _("Potrezbie")_ if you have trouble
 
