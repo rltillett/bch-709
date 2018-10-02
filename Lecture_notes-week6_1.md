@@ -1,4 +1,4 @@
-# BCH 709 Lecture notes: Week 5, part 2
+# BCH 709 Lecture notes: Week 6, part 1
 
 _October 2, 2018_
 When you arrive:
