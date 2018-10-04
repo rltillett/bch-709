@@ -1,9 +1,9 @@
 # BCH 709 Lecture notes: Week 6, part 1
 
-_October 2, 2018_
+_October 2, 2018 and 4th_
 When you arrive:
 
-- Grab post-its
+- No post-its today
 - Open our Gitter chatroom
 - Find and use the link to open _these_ notes
 - Log in to our linux server
