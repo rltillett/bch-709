@@ -29,13 +29,14 @@ When you arrive:
 ## Copying and Pasting
 This is honestly harder than it should be. Blame stubborn geniuses from the '80s for this one...
 
-On OSX laptops (and the OSX terminal)
+### On OSX laptops (and the OSX terminal)
 
 1. Highlight the text you want to copy from any program
 2. Copy it with "Command+C" `⌘ C`
 3. Paste it wherever you want with "Command+V" `⌘ V`
 
-On linux laptops (and the linux terminal)
+### On linux laptops (and the linux terminal)
+
 Case 1: copying from a webpage or document; pasting into the Terminal
 
 1. Highlight the text you want to copy
@@ -47,7 +48,8 @@ Case 2: copying from terminal; pasting somewhere not-a-Terminal
 2. **CAREFULLY** Copy it with "Control+Shift+C"
 3. Paste it into a document (not a terminal) with "Control+V" `Ctrl V`
 
-On Windows machines
+### On Windows machines (extra weird, of course)
+
 Case 1: copying from a webpage/document to Putty
 
 1. In the document, highlight the text you want to copy
