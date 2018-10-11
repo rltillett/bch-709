@@ -31,42 +31,50 @@ This is honestly harder than it should be. Blame stubborn geniuses from the '80s
 
 ### On OSX laptops (and the OSX terminal)
 
+OSX Case 1: works all the time
+
 1. Highlight the text you want to copy from any program
 2. Copy it with "Command+C" `⌘ C`
 3. Paste it wherever you want with "Command+V" `⌘ V`
 
 ### On linux laptops (and the linux terminal)
 
-Case 1: copying from a webpage or document; pasting into the Terminal
+Linux Case 1: copying from a webpage or document; pasting into the Terminal
 
 1. Highlight the text you want to copy
 2. Copy it with "Control+C" `Ctrl C`
 3. To paste into the terminal, "Control+Shift+V"
 
-Case 2: copying from terminal; pasting somewhere not-a-Terminal
+Linux Case 2: copying from terminal; pasting somewhere not-a-Terminal
 1. Highlight the text you want to copy in the terminal
 2. **CAREFULLY** Copy it with "Control+Shift+C"
 3. Paste it into a document (not a terminal) with "Control+V" `Ctrl V`
 
 ### On Windows machines (extra weird, of course)
 
-Case 1: copying from a webpage/document to Putty
+Windows Case 1: copying from a webpage/document to Putty
 
 1. In the document, highlight the text you want to copy
 2. Copy it with "Control+C" `Ctrl C`
 3. In Putty, simply right-click your mouse/trackpad to paste
 
-Case 2: copying from Putty to a document
+Windows Case 2: copying from Putty to a document
 
 1. Highlight the text in Putty
 2. (no need to copy. Putty automatically puts highlighted text on the clipboard)
 3. Paste it into a document (not Putty) with "Control+V" `Ctrl V`
 
-Case 3: copying from Putty to CMD.EXE (e.g. for pasting pieces of a pscp command)
+Windows Case 3: copying from Putty to CMD.EXE (e.g. for pasting pieces of a pscp command)
 
 1. Highlight the text in Putty
 2. (It gets added to the clipboard automatically)
 3. System Menu > Edit > Paste (this way works on Win 7, 8, 10)
+
+Windows Case 4: copying from CMD.EXE to Putty (e.g. for pasting pieces _from_ a pscp command into some command you're re-writing to run on our server)
+
+1. Highlight the text in CMD.EXE
+2. System Menu > Edit > Copy (this way works on Win 7, 8, 10)
+3. In Putty, just right-click to paste, just like in Windows Case 2.
 
 Once you've read this far, scroll back up and click the link to get ready to install samtools and bcftools from source.
 
