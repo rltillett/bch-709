@@ -30,15 +30,18 @@ When you arrive:
 This is honestly harder than it should be. Blame stubborn geniuses from the '80s for this one...
 
 On OSX laptops (and the OSX terminal)
+
 1. Highlight the text you want to copy from any program
 2. Copy it with "Command+C" `⌘ C`
 3. Paste it wherever you want with "Command+V" `⌘ V`
 
 On linux laptops (and the linux terminal)
 Case 1: copying from a webpage or document; pasting into the Terminal
+
 1. Highlight the text you want to copy
 2. Copy it with "Control+C" `Ctrl C`
 3. To paste into the terminal, "Control+Shift+V"
+
 Case 2: copying from terminal; pasting somewhere not-a-Terminal
 1. Highlight the text you want to copy in the terminal
 2. **CAREFULLY** Copy it with "Control+Shift+C"
@@ -46,17 +49,24 @@ Case 2: copying from terminal; pasting somewhere not-a-Terminal
 
 On Windows machines
 Case 1: copying from a webpage/document to Putty
+
 1. In the document, highlight the text you want to copy
 2. Copy it with "Control+C" `Ctrl C`
 3. In Putty, simply right-click your mouse/trackpad to paste
+
 Case 2: copying from Putty to a document
+
 1. Highlight the text in Putty
 2. (no need to copy. Putty automatically puts highlighted text on the clipboard)
 3. Paste it into a document (not Putty) with "Control+V" `Ctrl V`
+
 Case 3: copying from Putty to CMD.EXE (e.g. for pasting pieces of a pscp command)
+
 1. Highlight the text in Putty
 2. (It gets added to the clipboard automatically)
 3. System Menu > Edit > Paste (this way works on Win 7, 8, 10)
+
+Once you've read this far, scroll back up and click the link to get ready to install samtools and bcftools from source.
 
 ---
 
