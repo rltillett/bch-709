@@ -7,7 +7,7 @@ When you arrive:
 - Find and use the link to open _these_ notes
 - Log in to our linux server (134.197.51.225)
 - Red/green post-its are back
-- Mid-term presentations pushed back to Oct 30th and Nov 1
+- Mid-term presentations pushed back to Oct 30th and Nov 1. See [mid-term update: https://github.com/rltillett/bch-709/blob/master/mid-term-update.md](https://github.com/rltillett/bch-709/blob/master/mid-term-update.md).
 
 ## Last Time
 - [Data Wrangling and Processing for Genomics https://rltillett.github.io/wrangling-genomics/](https://rltillett.github.io/wrangling-genomics/)
