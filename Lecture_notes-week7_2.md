@@ -76,6 +76,8 @@ Windows Case 4: copying from CMD.EXE to Putty (e.g. for pasting pieces _from_ a 
 2. System Menu > Edit > Copy (this way works on Win 7, 8, 10)
 3. In Putty, just right-click to paste, just like in Windows Case 2.
 
+Instructor's Rant: I have nothing but contempt for Microsoft for making copy/paste so painful for so long in CMD.EXE. If you wish to scoff or boggle along with me, please enjoy their [pronouncement of finally reducing the toruous process to something reasonable in a 2018 update of Windows 10](https://blogs.msdn.microsoft.com/commandline/2018/04/13/copy-and-paste-arrives-for-linuxwsl-consoles/) -- a "CTRL-SHIFT-C" and "CTRL-SHIFT-V" feature added for the first time, some 23 years after the CMD.EXE DOS emulator debuted (in Windows 95). Windows 10 users, feel free to follow their instructions to reduce your pain.
+
 Once you've read this far, scroll back up and click the link to get ready to install samtools and bcftools from source.
 
 ---
