@@ -8,7 +8,7 @@ Of the 37 sequencing experiments analyzed by Blount et al, 6 were selected to an
 
 The variant calling workflow described in the Data Carpentry Wrangling Genomics Lesson will be used for this analysis (Herr et al, 2017). Library quality for the downloaded samples will be assessed by FastQC software (Andrews, 2010). Sequences will then be trimmed using Trimmomatic (Bolger et al, 2014). Quality assesment of trimmed reads will also be performed using FastQC. Trimmed reads will be aligned to the E. coli REL606 genome using BWA, a short read aligner (Li & Durbin, 2009). BWA alignments will be converted to SAM format (Li et al, 2009) using _bwa samse_. SAM format alignments will be compressed into binary formats (BAM files) and sorted using _samtools_. Sequence coverage at every base on the REL606 genome will then be called using the samtools _mpileup_ tool, generating a Binary Call Format (BCF) file, a compressed version of the Variant Call format (VCF) (Li 2011; Danecek et al, 2011). Single nucleotide polymorphisms will be identified using bcftools, and then filtered using _vcfutils.pl varFilter_. Alignments will be viewed using the Integrative Genomics Viewer (IGV), ran locally on a workstation (Thorvaldsdóttir et al, 2013).
 
-Table 1. Selected samples from the Data Carpentry Lesson (Herr et al, 2017)
+**Table 1.** Selected samples from the Data Carpentry Lesson (Herr et al, 2017)
 
 | SRA Run Number | Clone | Generation | Cit |
 | -------------- | ----- | ---------- | ----- |
@@ -22,8 +22,9 @@ Table 1. Selected samples from the Data Carpentry Lesson (Herr et al, 2017)
 ## Aim 2: Comparison of variants with Bolger et al.
 
 <specific aim 2 methods go here>
+<any tables and (cited) example figures here as well>
 
-Citations
+## Citations
 
 Andrews S. FastQC: a quality control tool for high throughput sequence data.
 
