@@ -22,6 +22,7 @@ The variant calling workflow described in the Data Carpentry Wrangling Genomics 
 ## Aim 2: Comparison of variants with Bolger et al.
 
 <specific aim 2 methods go here>
+
 <any tables and (cited) example figures here as well>
 
 ## Citations
