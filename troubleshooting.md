@@ -1,4 +1,4 @@
-# Time to troubleshoot the lesson from Tuesday
+# Time to troubleshoot the lesson from week 8
 ## Statement of the problem
 When we were attempting to complete the Data Carpentry Variant Calling workflow lesson, we ran into a few problems.
 
