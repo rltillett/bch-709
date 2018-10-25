@@ -1,6 +1,8 @@
 # Project Prototyping
 
-Suggestions on how to naturally devise, build and run your mid-term and final project.
+It might feel daunting right now to conceive and attempt to complete a bioinformatics project when you may not know how to get your input data, when you have a short list of tools you think you'll need to use (but have never used before), and don't know how it will all go together exactly.
+
+Here are some suggestions for how to break the challenge down into smaller bits. Bits that are managable. Bits that can become more specific. And bits that naturally turn into code you can run. And code that gives you your results.
 
 ## Make a list and a skeleton of the workflow
 Start a list of the things you will need and also a skeleton what you need to do. Your list of things is more or less nouns (what? and from where?). Your skeleton is a list of actions (verbs) you need to perform. Computers and programs perform actions, so this skeleton can naturally evolve into the literal commands you will run for your project.
@@ -73,7 +75,7 @@ conda create -n rna_env hisat2 samtools seqtk fastqc trimmomatic
 # write all this up
 ```
 
-**Big caveats:**
+**Caveats, exceptions, & more advice:**
 * You don't HAVE TO follow these suggestions. If you devise, execute, document and complete your project by whatever means neccessary, fine by your instructor.
 * You may not wish to put/keep your noun list and your verb list in the same document. Feel free to break things up if it feels like you're spending a lot of time fighting your conventions.
 * Things you will do on your laptop probably belong in another document.
@@ -90,6 +92,7 @@ source activate rna_env
 bash my_fancy_trim_loop.sh
 ```
 
-other mini-topic: Project prototyping advice [project-prototyping.md](https://github.com/rltillett/bch-709/blob/master/project-prototyping.md)
-other mini-topic: Getting Illumina libraries from SRA & downloading genomes [](https://github.com/rltillett/bch-709/blob/master/sra-and-ftp.md)
-other mini-topic: A wild R demonstration[r-demo](https://github.com/rltillett/bch-709/blob/master/r-demo.md)
+### More mini-topics
+* other mini-topic: Project prototyping advice [project-prototyping.md](https://github.com/rltillett/bch-709/blob/master/project-prototyping.md)
+* other mini-topic: Getting Illumina libraries from SRA & downloading genomes [sra-and-ftp](https://github.com/rltillett/bch-709/blob/master/sra-and-ftp.md)
+* other mini-topic: A wild R demonstration[r-demo](https://github.com/rltillett/bch-709/blob/master/r-demo.md)
