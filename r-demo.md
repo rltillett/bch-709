@@ -16,6 +16,8 @@ R is a popular, free, open language for taking data and computing statistics on 
 
 Let's read on the next section directly from the website version of the book for a bit more orientation[https://r4ds.had.co.nz/introduction.html](https://r4ds.had.co.nz/introduction.html):
 
+---
+
 I think I agree with Hadley, that while it might make logical sense to teach you step by step how to process data in R (and we will), the early tasks involved are unfamiliar, dry, complicated, not exciting nor stimulating, and lend themselves to questions of **_Why are we doing this thing right now? Why are we even here!?_**
 
 Let's answer that with a [pretty intense demo from youtube. I may have to slow his speed down to 75%, because Greg Martin is good at this stuff, and he's very fast: ](https://youtu.be/ANMuuq502rE)
