@@ -9,26 +9,30 @@ Make this outline in Atom, BBedit, VS Code or some other text editor. You could 
 
 Start with the list of things you need. Save it as `my_rnaseq_methods.sh` (or similar) if you're writing it like it already was a shell script full of commands (meaning all of these notes are comments), or as `my_rnaseq_methods.md` if you've written it more like a markdown text document.
 
-```
+```bash
+# Document: my_rnaseq_methods.md
+# Contains list of pre-requisites to get started
+############
 # Things I need for RNA-seq
-#
+############
 ## Input experiment data (Illumina FASTQ files for 12 samples), from NCBI (but how?)
 ## The mouse ref_genome [From ncbi or from ensembl? how to get?]
 ## These programs (complete? not sure.)
-#### fastqc
-#### trimmomatic
-#### hisat2
-#### samtools
-#### featureCounts (subread?)
-#### DEseq2 (R package. don't need on server)
-#### edgeR (ditto)
-#### seqtk (making sub-sample sized test data for getting started)
+## - fastqc
+## - trimmomatic
+## - hisat2
+## - samtools
+## - featureCounts (subread?)
+## - DEseq2 (R package. don't need on server)
+## - edgeR (ditto)
+## - seqtk (making sub-sample sized test data for getting started)
 ```
 
 As you later refine or change your method, you can and should edit your list of things you need. You're naturally tracking the growth of your project in this document.
 
 Continue on with your skeleton of methods as you understand it. Again, either comment style or markdown style. This section might start like this at the beginning
-```
+
+```bash
 ############
 # Outline of my method (try to start with verbs/actions)
 ############
@@ -43,7 +47,7 @@ Continue on with your skeleton of methods as you understand it. Again, either co
 
 And it will get more elaborate (relatively quickly) as you fill in the gaps and break these steps down into things closer and closer to the actual commands needed to get the job done, and start thinking about the inputs and outputs of each tool and how to plug them together, step by step. You might already know how you want to install things, and so you should write that command in the skeleton and run it (or the other way around).
 
-```
+```bash
 ############
 # Outline of my method (try to start with verbs/actions)
 ############
@@ -52,7 +56,7 @@ conda create -n rna_env hisat2 samtools seqtk fastqc trimmomatic
 # get input Fastq data from NCBI (how?). 12 samples
 # get reference genome from ___ (how? ftp?)
 # make folders for input data, ref_genome, results (and intermediate files)
-(probably have to) fiddle with the downloaded sequences (renaming? sub-sampling w/ seqtk to make a test data set?) sub-sampling w/ seqtk to make a test data set?)
+# (probably have to) fiddle with the downloaded sequences (renaming? sub-sampling w/ seqtk to make a test data set?) sub-sampling w/ seqtk to make a test data set?)
 # assess raw data quality (fastqc)
 # trim raw data (trimmomatic)
 # assess trimmed data quality (fastqc)
@@ -77,12 +81,15 @@ conda create -n rna_env hisat2 samtools seqtk fastqc trimmomatic
 * If you make and use bash `for` loops to execute some step/steps, you may want to shove those loops in their own shell script instead of in this ever-growing recipe. My advice:
 	- Sure. Do that. Fancy loop(s) in their own scripts.
 	- But add the name of that loop script to your noun list.
-	- And write a line or lines in the verb list for how you run your fancy script. e.g.
-```
+	- And write a line or lines in your skeleton for how you run your fancy script. such as:
+
+```bash
+# run my fancy trimming loop script to trim all 12 files
 tmux
 source activate rna_env
-bash my_fancy_loop.sh
+bash my_fancy_trim_loop.sh
 ```
-other mini-topic: Project prototyping advice [project-prototyping.md](https://www.github.com/project-prototyping.md)
-other mini-topic: Getting Illumina libraries from SRA & downloading genomes []()
-other mini-topic: A wild R demonstration[]()
+
+other mini-topic: Project prototyping advice [project-prototyping.md](https://github.com/rltillett/bch-709/blob/master/project-prototyping.md)
+other mini-topic: Getting Illumina libraries from SRA & downloading genomes [](https://github.com/rltillett/bch-709/blob/master/sra-and-ftp.md)
+other mini-topic: A wild R demonstration[r-demo](https://github.com/rltillett/bch-709/blob/master/r-demo.md)
