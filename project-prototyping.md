@@ -97,5 +97,4 @@ bash my_fancy_trim_loop.sh
 
 ### More mini-topics
 * other mini-topic: Project prototyping advice [project-prototyping.md](https://github.com/rltillett/bch-709/blob/master/project-prototyping.md)
-* other mini-topic: Getting Illumina libraries from SRA & downloading genomes [sra-and-ftp](https://github.com/rltillett/bch-709/blob/master/sra-and-ftp.md)
 * other mini-topic: A wild R demonstration[r-demo](https://github.com/rltillett/bch-709/blob/master/r-demo.md)
