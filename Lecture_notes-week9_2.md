@@ -6,14 +6,17 @@ When you arrive:
 - Open our Gitter chatroom
 - Find and use the link to open _these_ notes
 - Log in to our linux server (134.197.51.225)
+- Open Rstudio on your laptops
 
 ---
+
 ## Today
 - Assignment 6. Hold the due date? Or move it into mid-term week?
 - finish [conda guide https://github.com/rltillett/conda_notes](https://github.com/rltillett/conda_notes)
 - 2 Mini-topics
    - mini-topic: Project prototyping advice for mid-term/final [project-prototyping.md](https://github.com/rltillett/bch-709/blob/master/project-prototyping.md)
    - mini-topic: A wild R demonstration[r-demo](https://github.com/rltillett/bch-709/blob/master/r-demo.md)
+
 ---
 
 ## Last Time
