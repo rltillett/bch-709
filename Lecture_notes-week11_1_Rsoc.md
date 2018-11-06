@@ -5,7 +5,6 @@ When you arrive:
 
 - Open our Gitter chatroom
 - Find and use the link to open _these_ notes
-- Log in to our linux server (134.197.51.225)
 - Open Rstudio on your laptops
 
 ---
