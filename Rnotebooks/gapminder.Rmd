@@ -52,6 +52,7 @@ Here we make the gapminder table (data frame from the gapminder data/fcn)
 ```{r make_gapminder_df}
 gapminder_table <- gapminder
 gapminder_table
+summary(gapminder_table)
 ```
 
 ### Spread data by year
