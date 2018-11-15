@@ -1,40 +1,62 @@
 ---
-title: "Spread and Gather with Gapminder and R Notebooks"
+title: "Learning Spread and Gather with R Notebooks"
 output: html_notebook
 ---
+
+I've written this lesson to show you two things at once: 
+
+ 1. a clear example of the `gather` and `spread` functions of the `tidyr` package (which we installed as part of the `tidyverse` meta-package), and
+ 2. R Notebooks, an elaboration of the bog-standard R script, which offer enhancements to previewing you work as you go, the ability to glance at your data frames in-place, massively upgraded room for comments and documentation, and ease of sharing your work (or work in-progress) by rendering it to a self-contained webpage you can publish or email (or whatever).
+
+Glance through this page and get ready to open a new project in Rstudio specifically for this demonstration, and we'll use the code blocks you see below to build your own R Notebook that executes the gather and spread functions shown, and learn how R notebooks generally work. It is up to you if you prefer Notebooks to Scripts for general use.
+
+The Rmd file which generated this page can be found here, but don't bother with that yet: [(https://github.com/rltillett/bch-709/blob/master/Rnotebooks/gapminder.Rmd)](https://github.com/rltillett/bch-709/blob/master/Rnotebooks/gapminder.Rmd). I've also linked it later in this page.
+
+## Initial instructions
+
+1. In Rstudio, click the button with a cube and green + on it to make a new project. name it "gapminder".
+2. Now click the other button with a green + symbol, and choose "R Notebook".
+3. Save the new notebook as "gapminder.Rmd" or something.
+
+The notebook comes pre-loaded with some basic instructions for "what the heck am i supposed to do here?", a demo of how Notebooks can show off plots, and shortcuts for making **code chunks**, a key difference between a vanilla R script and a Notebook. In an R script, all lines of text are expected to be `R code` unless they begin with the `#` comment symbol. In Notebooks, the sense is inverted: all the text is text, unless it is found inside of an executable _code chunk_.
+
+We'll interactively explore your new R Notebook and then re-visit this page to learn how to effectively use `gather()` and `spread()`. Oh, and we're going to use the `gapminder` dataset we first saw in [Greg Martin's tour of R video](https://youtu.be/ANMuuq502rE).
 
 ## Notebooks are great for plotting
 Here is an example of what R notebooks can do with plots.
 
-```{r}
+```{r cars_plot}
 plot(cars)
 ```
 
-
 ---
+
 ## But they're also good for documenting complete workflows
 ### Loading libraries
 This chunk is just for recording package install methods (as comments) and for actually loading libraries
 
-```{r}
+```{r install_load}
 # package installs have been commented out. 
-# if you already have installed, don't re-install for no reason!
+# yes, this means comments are still comments when they're in a code chunk.
+# if you already have installed [thing], don't re-install for no reason!
 # install.packages("tidyverse")
 # install.packages("gapminder")
 library(gapminder)
 library(tidyverse)
 ```
 
+If you want your notebook to be able to be ran by someone using a vanilla install of R, you would want to un-comment your `install.packages` lines, but then the script will try to download and install the packages every time that chunk of code runs. Kind of wasteful, especially for big and complicated packages. I prefer to include the install commands as comments, **wave a big flag** (like this), and instruct users to install the indicated packages themselves before running the Notebook.
+
 ### Importing gapminder into a data frame
 Here we make the gapminder table (data frame from the gapminder data/fcn)
-```{r}
+```{r make_gapminder_df}
 gapminder_table <- gapminder
 gapminder_table
 ```
 
 ### Spread data by year
 Now we spread the data for 2 countries, each year gets a column
-```{r}
+```{r spread_by_year}
 year_spread <- gapminder_table %>% 
   filter(year>1951) %>% 
   filter(country== "Afghanistan" | 
@@ -44,17 +66,30 @@ year_spread <- gapminder_table %>%
 year_spread
 ```
 
-## Gather years back to tidy format
-and now we gather them back into a *tidy* format
+### Gather years back to tidy format
+and now we easily gather them back into a *tidy* format, starting from the `year_spread` data frame
 
-```{r}
-year_gather <- gapminder_table %>% 
-  filter(year>1951) %>% 
-  filter(country== "Afghanistan" | 
-           country=="Ireland") %>% 
-  select(country,year,lifeExp) %>% 
-  spread(year, lifeExp) %>% 
+```{r gather_back_by_year}
+year_gather <- year_spread %>% 
   gather(year, lifeExp, "1952":"2007")
 year_gather
 ```
+
+
+
+## Making your notebook look nice with Markdown
+This webpage was 100% generated from an R Markdown **Rmd** file, [specifically, this Rmd file.](https://github.com/rltillett/bch-709/blob/master/Rnotebooks/gapminder.Rmd) As you use the code sections on this webpage to construct your own R Markdown file for gathering and spreading operations, your Rmd file and the html file that it generates on Run+Save will contain the "meat and potatoes" found in this page. 
+
+To go further, and to create nice formatting for the free text in between R chunks, you'll want to use Markdown syntax to format the text not-inside the R chunks. With Markdown syntax, you can very easily do things like
+
+ - making lists
+ - mark text as **bold**, 
+ - or _italic_ 
+ - set section headings of varying size (lines starting with # symbols. `#` for H1, `##` is H2, and so forth). Sorry, I can't show this in this bulleted list.
+ - make section breaks with 3 dashes `-` _but be careful to place an empty line after these breaks. The Rmd to html converter in Rstudio is hyper-strict about breaks, and will glitch out subsequent sections if you don't have an empty line after things like section breaks (and maybe lists)._
+ - inline code delimiters (for function names, maybe?) by wrapping text between backticks `like this`
+
+You can find a pretty useful Markdown syntax primer at Github, for Github's own version of Markdown [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). Not all of the features have parity in R Markdown, but most do. And, as noted above, R Markdown can by hypersensitive about how you should leave blank lines around syntax features that involve vertical space on the page (section breaks and probably others too).
+
+Note that all or most of these Markdown syntax text formattings are also available to you when writing text files and putting them up on [github](https://github.com) and in the chat client I've been asking you to use [gitter.im](gitter.im)
 
