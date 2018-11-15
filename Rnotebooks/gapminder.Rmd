@@ -1,0 +1,60 @@
+---
+title: "Spread and Gather with Gapminder and R Notebooks"
+output: html_notebook
+---
+
+## Notebooks are great for plotting
+Here is an example of what R notebooks can do with plots.
+
+```{r}
+plot(cars)
+```
+
+
+---
+## But they're also good for documenting complete workflows
+### Loading libraries
+This chunk is just for recording package install methods (as comments) and for actually loading libraries
+
+```{r}
+# package installs have been commented out. 
+# if you already have installed, don't re-install for no reason!
+# install.packages("tidyverse")
+# install.packages("gapminder")
+library(gapminder)
+library(tidyverse)
+```
+
+### Importing gapminder into a data frame
+Here we make the gapminder table (data frame from the gapminder data/fcn)
+```{r}
+gapminder_table <- gapminder
+gapminder_table
+```
+
+### Spread data by year
+Now we spread the data for 2 countries, each year gets a column
+```{r}
+year_spread <- gapminder_table %>% 
+  filter(year>1951) %>% 
+  filter(country== "Afghanistan" | 
+           country=="Ireland") %>% 
+  select(country,year,lifeExp) %>% 
+  spread(year, lifeExp)
+year_spread
+```
+
+## Gather years back to tidy format
+and now we gather them back into a *tidy* format
+
+```{r}
+year_gather <- gapminder_table %>% 
+  filter(year>1951) %>% 
+  filter(country== "Afghanistan" | 
+           country=="Ireland") %>% 
+  select(country,year,lifeExp) %>% 
+  spread(year, lifeExp) %>% 
+  gather(year, lifeExp, "1952":"2007")
+year_gather
+```
+
