@@ -19,7 +19,9 @@ We'll return to our fork of R for social science to continue learning how to plo
    - [tidyverse's dplyr (e.g. filter, select, mutate) cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
    - [tidyverse's data import (e.g. read_csv) and tidyr (e.g. gather, spread) cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 
-Note on our fork and choice of external lesson (why R for social scientists): I've slightly modified a data carpentry lesson on R for social scientists for our work on getting started, installing packages, loading packages, and importing data using R today. The exact kinds of data tables are less important today, than having the lesson flow well, and I liked the way the R for Social Scientists folks put theirs together best. [Original lessons found here](https://datacarpentry.org/r-socialsci/), but don't use this. It lacks my changes that ensure the data is available).
+### Advertisement: 2019 UNR Data Carpentry Workshop
+
+[Official website https://sateeshperi.github.io/2019-01-15-reno/](https://sateeshperi.github.io/2019-01-15-reno/)
 
 ### Assignment 8, due Weds Nov 28th. Point value 30.
  Recreate the outcomes of [Greg Martin's R video](https://www.youtube.com/watch?v=ANMuuq502rE&index=2&list=PLwNdLuOLgx2owOszFnSWlOHXLCKMQ1Tbp), aiming to recreate his results and improve the style for clarity, rather than speed. And do so in an R notebook, upload the notebook and html output to github, and paste links (URLs) to those 2 files as your response to this assignment. (I'll show you how before it's due).
