@@ -12,11 +12,11 @@ When you arrive:
 
 Now we're going to use and follow a tutorial on R with a bioinformatics focus, with elements of data viz, basic, and fairly advanced statistics. I've forked, and modified the materials from [https://bitsandchips.me/BAD_days/](https://bitsandchips.me/BAD_days/). Let's take a look at their site first.
 
-We'll start from their "Day 1" lesson, which I've rebuilt for us to update the Bioconductor instructions and so the images don't 404 ERROR. Our copy of Day 1 is here: [https://rltillett.github.io/BAD_days/Day1/Tutorial.html](https://rltillett.github.io/BAD_days/Tutorial.html)
+We'll start from their "Day 1" lesson, which I've rebuilt for us to update the Bioconductor instructions and so the images don't 404 ERROR. Our copy of Day 1 is here: [https://rltillett.github.io/BAD_days/Day1/Tutorial.html](https://rltillett.github.io/BAD_days/Day1/Tutorial.html)
 There are additional pages for this section I've also re-rendered, and we'll cover these today too, if time permits:
 
-* [https://rltillett.github.io/BAD_days/Day1/Frequency.html](https://rltillett.github.io/BAD_days/Frequency.html)
-* [https://rltillett.github.io/BAD_days/Day1/Ttest.html](https://rltillett.github.io/BAD_days/Frequency.html)
+* [https://rltillett.github.io/BAD_days/Day1/Frequency.html](https://rltillett.github.io/BAD_days/Day1/Frequency.html)
+* [https://rltillett.github.io/BAD_days/Day1/Ttest.html](https://rltillett.github.io/BAD_days/Day1/Frequency.html)
 * [Extended comments on distributions and statistics](https://rltillett.github.io/BAD_days/Day1/Comments.html)
 
 The github repo (the source files, not the published pages) of our BAD Days fork can be found here: [https://github.com/rltillett/BAD_days](https://github.com/rltillett/BAD_days)
