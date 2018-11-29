@@ -19,7 +19,7 @@ There are additional pages for this section I've also re-rendered, and we'll cov
 * [https://rltillett.github.io/BAD_days/Ttest.html](https://rltillett.github.io/BAD_days/Frequency.html)
 * [Extended comments on distributions and statistics](https://rltillett.github.io/BAD_days/Comments.html)
 
-
+The github repo (the source files, not the published pages) of our BAD Days fork can be found here: [https://github.com/rltillett/BAD_days](https://github.com/rltillett/BAD_days)
 
 ### Advertisement: 2019 UNR Data Carpentry Workshop
 
