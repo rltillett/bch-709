@@ -9,7 +9,22 @@ When you arrive:
 
 ---
 
-## Pausing the B.A.D. materials; rnaseqGene workflow instead
+## Notes for the final:
+
+Due date for final turn in is: **Weds Dec 19th.** Have you started? Are you stuck?
+
+### Format
+
+Your final project should be written, with your code, and possibly your figures added as supplemental files.
+
+- Recycle your introduction if you wish, but add to it (at the end) a summary of your findings/results
+- Methods: describe what you did, feel free to include or make reference to troubleshooting and alternate steps taken
+- Results: I don't expect a full and total results section like you would submit for publication, but here is where your figures and tables "go" and where you talk about them, and about how your methods became your findings. You can be less formal than for a publication too (use of first-person not prohibited), especially if you did a lot of troubleshooting.
+- Discussion: Discuss. What worked? What didn't? What next?
+
+---
+
+## Pausing the B.A.D. materials; An rnaseqGene workflow instead
 
 The more I re-visited the BAD materials, the more I felt like it would cause us to stall out. It uses a lot of base features of R, which means numeric references, instead of column, row or object names. We'll keep the materials handy, as the statistics are worked out fairly well in it, but shift gears to this Bioconductor workflow centered on DESeq2 instead: [http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html](http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html)
 
