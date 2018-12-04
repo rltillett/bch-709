@@ -13,6 +13,10 @@ When you arrive:
 
 The more I re-visited the BAD materials, the more I felt like it would cause us to stall out. It uses a lot of base features of R, which means numeric references, instead of column, row or object names. We'll keep the materials handy, as the statistics are worked out fairly well in it, but shift gears to this Bioconductor workflow centered on DESeq2 instead: [http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html](http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html)
 
+The material in this workflow is also presented in the following publication: (Lowe, et al 2016) [https://f1000research.com/articles/4-1070](https://f1000research.com/articles/4-1070)
+
+There is also the main DeSeq2 vignette you might wish to consult, though it is not quite as user-friendly: [https://bioconductor.org/packages/3.8/bioc/vignettes/DESeq2/inst/doc/DESeq2.html](https://bioconductor.org/packages/3.8/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+
 ### Instructions
 
 - Open a new session in Rstudio
@@ -27,6 +31,8 @@ BiocManager::install("rnaseqGene", version = "3.8")
 ```
 
 This will take a while. Keep an eye open for it asking you `a/s/n?` or `yes/no` questions.
+
+If you need a refresher on RNA-seq methodology basics, consult this video from StatQuest [https://youtu.be/tlf6wYJrwKY](https://youtu.be/tlf6wYJrwKY).
 
 Once it is all installed, we then open up an R script or R notebook for the project, and we will follow along with this Bioconductor vignette [http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html](http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html).
 
