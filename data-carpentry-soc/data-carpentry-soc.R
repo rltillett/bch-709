@@ -217,4 +217,19 @@ ggplot(percent_items, aes(x=village, y=percent)) +
         axis.text.y = element_text(colour = "grey20", size = 12),
         text = element_text(size = 16))
 
-  
+## making our own gray theme for ggplot
+grey_theme <- theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 45, hjust = 0.5, vjust = 0.5),
+                    axis.text.y = element_text(colour = "grey20", size = 12),
+                    text = element_text(size = 16),
+                    plot.title = element_text(hjust = 0.5))
+
+## using our grey theme
+my_plot <- ggplot(percent_items, aes(x = village, y = percent)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ items) +
+  labs(title = "Percent of respondents in each village \n who owned each item",
+       x = "Village",
+       y = "Percent of Respondents") +
+  grey_theme
+my_plot
+ggsave("fig_output/name_of_file.png", my_plot, width = 15, height = 10)

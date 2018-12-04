@@ -1,0 +1,30 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+```{r}
+# In case you need to install the packages
+install.packages("xlsx")
+install.packages("rJava")
+# install.packages("gdata")
+# install.packages("ape")
+```
+
+```{r}
+# Install multtest from Bioconductor
+# If R version is 3.5 or higher, install the new way:
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("multtest")
+
+```
+
+```{r}
+library(rJava)
+library(xlsx)
+library(multtest)
+```
+
