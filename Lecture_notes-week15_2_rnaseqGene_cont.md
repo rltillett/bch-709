@@ -11,7 +11,7 @@ When you arrive:
 
 ## Continuing the rnaseqGene workflow
 
-We'll return to the rnaseqGene workflow for DESeq2 analysis. 
+We'll return to the rnaseqGene workflow for DESeq2 analysis.
 
 - [http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html](http://master.bioconductor.org/packages/release/workflows/html/rnaseqGene.html)
 - Previously, we explored the data import methods, and we'll continue from there.
@@ -22,6 +22,20 @@ We'll return to the rnaseqGene workflow for DESeq2 analysis.
 The material in this workflow is also presented in the following publication: (Lowe, et al 2016) [https://f1000research.com/articles/4-1070](https://f1000research.com/articles/4-1070)
 
 There is also the main DeSeq2 vignette you might wish to consult, though it is not quite as user-friendly: [https://bioconductor.org/packages/3.8/bioc/vignettes/DESeq2/inst/doc/DESeq2.html](https://bioconductor.org/packages/3.8/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+
+
+---
+## Homework 9 (last homework, 30 points, due Dec 17th)
+
+To learn more about PCA and other dimensional reductions, watch these two StatQuest videos:
+- [The 5 minute version](https://www.youtube.com/watch?v=HMOI_lkzW08)
+- [The 20 minute version, updated for 2018](https://www.youtube.com/watch?v=FgakZw6K1QQ)
+
+Question 1: After watching those two videos, consider the way our rnaseqGene workflow describes PCA and the way the DESeq2 package's PCA function presents PCA results. Are there any potential dangers in data interpretation if we simply use the PCA as shown in our lesson (with no screeplot)?
+
+Watch at least StatQuest video of your choice. [Here's a link to all his videos](https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR). You might wish to bookmark [his channel](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw) too. 
+
+Question 2: Which one did you watch? Paste in the link to that video too, please. Why did you pick it? What did you learn or like or desire to learn even more about? (just a few sentences is fine).
 
 ---
 
