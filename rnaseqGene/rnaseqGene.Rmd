@@ -1,0 +1,125 @@
+---
+title: "rnaseqGene Notebook"
+output: html_notebook
+---
+# rnaseqGene workflow notebook
+
+
+For this script to function properly, install the rnaseqGene package from bioconductor
+```{r dont_run}
+# For this script to function properly, install the rnaseqGene package from bioconductor using the commands directly below:
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("rnaseqGene", version = "3.8")
+```
+
+
+### Section 2.3: locating alignment files
+```{r}
+library(airway)
+indir <- system.file("extdata", package="airway", mustWork=TRUE) # indir variable is just the name of a folder
+indir # see?
+list.files(indir) # shows us the files in that folder
+
+# importing the sample table into R
+csvfile <- file.path(indir, "sample_table.csv")
+sampleTable <- read.csv(csvfile, row.names = 1)
+sampleTable
+```
+
+### Section 2.4: DESeq2 import functions
+First, we need to import in the BAM files for our samples
+```{r}
+# import counts from BAM files
+filenames <- file.path(indir, paste0(sampleTable$Run, "_subset.bam"))
+file.exists(filenames)
+
+library("Rsamtools")
+bamfiles <- BamFileList(filenames, yieldSize=2000000) # only import 2M seqs at a time
+
+seqinfo(bamfiles[1])
+```
+
+### Section 2.5: Defining gene models
+To extract/summarize count info from the BAM files, we need annotations of where the genes and exons are, namely in GTF format.
+```{r}
+library("GenomicFeatures")
+gtffile <- file.path(indir,"Homo_sapiens.GRCh37.75_subset.gtf")
+txdb <- makeTxDbFromGFF(gtffile, format = "gtf", circ_seqs = character())
+txdb #transcript db
+
+ebg <- exonsBy(txdb, by="gene")
+ebg # "exons by gene"
+```
+
+### Section 2.6: Read Counting & making a summarized experiment S4 object
+```{r}
+library("GenomicAlignments")
+library("BiocParallel")
+register(SerialParam()) # apparently, this drops us back down to 1 core use for the demo
+# 
+# create the `se` summarized experiment object
+se <- summarizeOverlaps(features=ebg, reads=bamfiles,
+                        mode="Union",
+                        singleEnd=FALSE,
+                        ignore.strand=TRUE,
+                        fragments=TRUE )
+se
+```
+
+### Section 2.7: about the SummarizedExperiment object
+```{r}
+se
+
+dim(se)
+assayNames(se)
+head(assay(se), 3)
+colSums(assay(se))
+rowRanges(se)
+str(metadata(rowRanges(se))) # str is short for "internal STRucture"
+
+### to view colData
+colData(se) # no columns!
+### let's properly fill this slot
+colData(se) <- DataFrame(sampleTable)
+colData(se)
+```
+
+## Section 3: The DESeqDataSet object, sample information and the design formula
+
+### Section 3.1: Starting from a SummarizedExperiment
+
+(yes, it over-writes our old `se` object. I don't agree with this choice of just erasing the work we did before, but I'll live with it.
+
+### Section 3.2 <skip> Starting from count matrices
+
+We're going to skip 3.2 in class because it covers very similar steps to the first way we imported in data, and the main differences are that instead of importing from the BAMs, we would be running an outside counting tool that gave us a csv or tsv of counts, and building our S4 objects from that entry point.
+
+## Section 4: Exploratory analysis and visualization
+
+filtering, modeling variance examples, PCAs
+
+### Section 4.1: Pre-filtering the dataset
+
+(compare this filter with the one used in the BAD days Day 3 workflow)
+
+### Section 4.2: The variance stabilizing transformation and the rlog
+### Section 4.3: Sample distances
+### Section 4.4: PCA plot
+### Section 4.5: MDS plot
+## Section 5: Differential expression analysis
+### Section 5.1: Running the differential expression pipeline
+### Section 5.2: Building the results table
+### Section 5.3: Other comparisons
+### Section 5.4: Multiple testing
+## Section 6: Plotting results
+### Section 6.1: Counts plot
+### Section 6.2: MA-plot
+### Section 6.3: Gene clustering
+### Section 6.4: Independent filtering
+## Section 7: Annotating and exporting results
+### Section 7.1: Exporting results
+### Section 7.2: Plotting fold changes in genomic space
+### Section 8.2: Removing hidden batch effects
+### Section 8.1: Using SVA with DESeq2
+### Section 8.2: Using RUV with DESeq2
