@@ -25,7 +25,7 @@ There is also the main DeSeq2 vignette you might wish to consult, though it is n
 
 
 ---
-## Homework 9 (last homework, 30 points, due Dec 17th)
+## Homework 9: A few StatQuest videos (last homework, 30 points, due Dec 13th 6pm)
 
 To learn more about PCA and other dimensional reductions, watch these two StatQuest videos:
 - [The 5 minute version](https://www.youtube.com/watch?v=HMOI_lkzW08)
