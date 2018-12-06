@@ -31,11 +31,11 @@ To learn more about PCA and other dimensional reductions, watch these two StatQu
 - [The 5 minute version](https://www.youtube.com/watch?v=HMOI_lkzW08)
 - [The 20 minute version, updated for 2018](https://www.youtube.com/watch?v=FgakZw6K1QQ)
 
-Question 1: After watching those two videos, consider the way our rnaseqGene workflow describes PCA and the way the DESeq2 package's PCA function presents PCA results. Are there any potential dangers in data interpretation if we simply use the PCA as shown in our lesson (with no screeplot)?
+**Question 1:** After watching those two videos, consider the way our rnaseqGene workflow describes PCA and the way the DESeq2 package's PCA function presents PCA results. Are there any potential dangers in data interpretation if we simply use the PCA as shown in our lesson (with no screeplot)?
 
-Watch at least StatQuest video of your choice. [Here's a link to all his videos](https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR). You might wish to bookmark [his channel](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw) too. 
+Watch at least StatQuest video of your choice. [Here's a link to all his videos](https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR). You might wish to bookmark [his channel](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw) too.
 
-Question 2: Which one did you watch? Paste in the link to that video too, please. Why did you pick it? What did you learn or like or desire to learn even more about? (just a few sentences is fine).
+**Question 2:** Which one did you watch? Paste in the link to that video too, please. Why did you pick it? What did you learn or like or desire to learn even more about? (just a few sentences is fine).
 
 ---
 
