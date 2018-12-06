@@ -101,7 +101,7 @@ filtering, modeling variance examples, PCAs
 
 ### Section 4.1: Pre-filtering the dataset
 
-(compare this filter with the one used in the BAD days Day 3 workflow)
+[compare the presented filter with the one used in the BAD days Day 3 workflow](https://bitsandchips.me/BAD_days/RNA-sequencing.html#data-pre-processing)
 
 ### Section 4.2: The variance stabilizing transformation and the rlog
 ### Section 4.3: Sample distances
