@@ -52,7 +52,7 @@ ebg <- exonsBy(txdb, by="gene")
 ebg # "exons by gene"
 ```
 
-### Section 2.6: Read Counting & making a summarized experiment S4 object
+### Section 2.6: Read Counting & making a Summarized Experiment S4 object
 ```{r}
 library("GenomicAlignments")
 library("BiocParallel")
@@ -86,10 +86,37 @@ colData(se)
 ```
 
 ## Section 3: The DESeqDataSet object, sample information and the design formula
+```{r}
+se$cell
+se$dex
+
+library("magrittr")
+se$dex %<>% relevel("untrt")
+se$dex
+# this funny pipe that sends the changes back to the original object is equivalent to this:
+# se$dex <- relevel(se$dex, "untrt")
+
+```
 
 ### Section 3.1: Starting from a SummarizedExperiment
 
 (yes, it over-writes our old `se` object. I don't agree with this choice of just erasing the work we did before, but I'll live with it.
+
+```{r}
+data("airway")
+se <- airway
+
+se$dex %<>% relevel("untrt")
+se$dex
+
+round( colSums(assay(se)) / 1e6, 1 )
+colData(se)
+
+# only putting this here because i've organized my chunks by section headers
+library("DESeq2")
+dds <- DESeqDataSet(se, design = ~ cell + dex)
+```
+
 
 ### Section 3.2 <skip> Starting from count matrices
 
@@ -100,7 +127,33 @@ We're going to skip 3.2 in class because it covers very similar steps to the fir
 filtering, modeling variance examples, PCAs
 
 ### Section 4.1: Pre-filtering the dataset
+```{r}
+nrow(dds)
+dds <- dds[ rowSums(counts(dds)) > 1, ]
+nrow(dds)
 
+lambda <- 10^seq(from = -1, to = 2, length = 1000)
+cts <- matrix(rpois(1000*100, lambda), ncol = 100)
+library("vsn")
+# this install did not come with the workflow, but i bet they thought it would VVVVVV
+# install.packages("hexbin")
+library(hexbin)
+meanSdPlot(cts, ranks = FALSE)
+
+log.cts.one <- log2(cts + 1)
+meanSdPlot(log.cts.one, ranks = FALSE)
+
+vsd <- vst(dds, blind = FALSE)
+head(assay(vsd), 3)
+colData(vsd)
+
+rld <- rlog(dds, blind = FALSE)
+head(assay(rld), 3)
+```
+
+
+
+nrow(dds)
 [compare the presented filter with the one used in the BAD days Day 3 workflow](https://bitsandchips.me/BAD_days/RNA-sequencing.html#data-pre-processing)
 
 ### Section 4.2: The variance stabilizing transformation and the rlog
