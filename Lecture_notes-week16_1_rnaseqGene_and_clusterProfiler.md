@@ -36,8 +36,8 @@ We'll return to the rnaseqGene workflow for DESeq2 analysis.
 - [http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html](http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html)
 - Previously, we explored the data import methods, and we'll continue from there.
    - We'll perform PCAs, run the main DESeq2 function, plot results, then export tables
-- Then we'll run functions to select the 240 genes with 2-fold or greater increases/decreases in expression by dex treatment, and export these results to tab-delimited text `.tsv` files. Scroll to the bottom of this webpage for the requisite R code: []()
-- Sateesh will then show us `clusterProfiler`. See his R script here: []()
+- Then we'll run functions to select the 240 genes with 2-fold or greater increases/decreases in expression by dex treatment, and export these results to tab-delimited text `.tsv` files. Scroll to the bottom of this webpage for the requisite R code (named the **GLUE SECTION**): [https://rltillett.github.io/bch-709/rnaseqGene/rnaseqGeneEverything.nb.html](https://rltillett.github.io/bch-709/rnaseqGene/rnaseqGeneEverything.nb.html)
+- Sateesh will then show us `clusterProfiler`. See his R script here: [https://github.com/rltillett/bch-709/blob/master/rnaseqGene/GO_analysis_R.r](https://github.com/rltillett/bch-709/blob/master/rnaseqGene/GO_analysis_R.r)
 
 
 The material in this workflow is also presented in the following publication: (Lowe, et al 2016) [https://f1000research.com/articles/4-1070](https://f1000research.com/articles/4-1070)
