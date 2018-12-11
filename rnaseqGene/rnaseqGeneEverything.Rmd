@@ -1,0 +1,391 @@
+---
+title: "rnaseqGene Notebook"
+output: html_notebook
+---
+# rnaseqGene workflow notebook
+
+
+For this script to function properly, install the rnaseqGene package from bioconductor
+```{r dont_run}
+# For this script to function properly, install the rnaseqGene package from bioconductor using the commands directly below:
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+#BiocManager::install("rnaseqGene", version = "3.8")
+```
+
+
+### Section 2.3: locating alignment files
+```{r}
+library(airway)
+indir <- system.file("extdata", package="airway", mustWork=TRUE) # indir variable is just the name of a folder
+indir # see?
+list.files(indir) # shows us the files in that folder
+
+# importing the sample table into R
+csvfile <- file.path(indir, "sample_table.csv")
+sampleTable <- read.csv(csvfile, row.names = 1)
+sampleTable
+```
+
+### Section 2.4: DESeq2 import functions
+First, we need to import in the BAM files for our samples
+```{r}
+# import counts from BAM files
+filenames <- file.path(indir, paste0(sampleTable$Run, "_subset.bam"))
+file.exists(filenames)
+
+library("Rsamtools")
+bamfiles <- BamFileList(filenames, yieldSize=2000000) # only import 2M seqs at a time
+
+seqinfo(bamfiles[1])
+```
+
+### Section 2.5: Defining gene models
+To extract/summarize count info from the BAM files, we need annotations of where the genes and exons are, namely in GTF format.
+```{r}
+library("GenomicFeatures")
+gtffile <- file.path(indir,"Homo_sapiens.GRCh37.75_subset.gtf")
+txdb <- makeTxDbFromGFF(gtffile, format = "gtf", circ_seqs = character())
+txdb #transcript db
+
+ebg <- exonsBy(txdb, by="gene")
+ebg # "exons by gene"
+```
+
+### Section 2.6: Read Counting & making a Summarized Experiment S4 object
+```{r}
+library("GenomicAlignments")
+library("BiocParallel")
+register(SerialParam()) # apparently, this drops us back down to 1 core use for the demo
+# 
+# create the `se` summarized experiment object
+se <- summarizeOverlaps(features=ebg, reads=bamfiles,
+                        mode="Union",
+                        singleEnd=FALSE,
+                        ignore.strand=TRUE,
+                        fragments=TRUE )
+se
+```
+
+### Section 2.7: about the SummarizedExperiment object
+```{r}
+se
+
+dim(se)
+assayNames(se)
+head(assay(se), 3)
+colSums(assay(se))
+rowRanges(se)
+str(metadata(rowRanges(se))) # str is short for "internal STRucture"
+
+### to view colData
+colData(se) # no columns!
+### let's properly fill this slot
+colData(se) <- DataFrame(sampleTable)
+colData(se)
+```
+
+## Section 3: The DESeqDataSet object, sample information and the design formula
+```{r}
+se$cell
+se$dex
+
+library("magrittr")
+se$dex %<>% relevel("untrt")
+se$dex
+# this funny pipe that sends the changes back to the original object is equivalent to this:
+# se$dex <- relevel(se$dex, "untrt")
+
+```
+
+### Section 3.1: Starting from a SummarizedExperiment
+
+(yes, it over-writes our old `se` object. I don't agree with this choice of just erasing the work we did before, but I'll live with it.
+
+```{r}
+data("airway")
+se <- airway
+
+se$dex %<>% relevel("untrt")
+se$dex
+
+round( colSums(assay(se)) / 1e6, 1 )
+colData(se)
+
+# only putting this here because i've organized my chunks by section headers
+library("DESeq2")
+dds <- DESeqDataSet(se, design = ~ cell + dex)
+```
+
+
+### Section 3.2 <skip> Starting from count matrices
+
+We're going to skip 3.2 in class because it covers very similar steps to the first way we imported in data, and the main differences are that instead of importing from the BAMs, we would be running an outside counting tool that gave us a csv or tsv of counts, and building our S4 objects from that entry point.
+
+## Section 4: Exploratory analysis and visualization
+
+filtering, modeling variance examples, PCAs
+
+### Section 4.1: Pre-filtering the dataset
+```{r}
+nrow(dds)
+dds <- dds[ rowSums(counts(dds)) > 1, ]
+nrow(dds)
+
+lambda <- 10^seq(from = -1, to = 2, length = 1000)
+cts <- matrix(rpois(1000*100, lambda), ncol = 100)
+library("vsn")
+# this install did not come with the workflow, but i bet they thought it would VVVVVV
+# install.packages("hexbin")
+library(hexbin)
+meanSdPlot(cts, ranks = FALSE)
+
+log.cts.one <- log2(cts + 1)
+meanSdPlot(log.cts.one, ranks = FALSE)
+
+vsd <- vst(dds, blind = FALSE)
+head(assay(vsd), 3)
+colData(vsd)
+
+rld <- rlog(dds, blind = FALSE)
+head(assay(rld), 3)
+```
+
+
+
+nrow(dds)
+[compare the presented filter with the one used in the BAD days Day 3 workflow](https://bitsandchips.me/BAD_days/RNA-sequencing.html#data-pre-processing)
+
+### Section 4.2: The variance stabilizing transformation and the rlog
+```{r}
+library("dplyr")
+library("ggplot2")
+
+dds <- estimateSizeFactors(dds)
+
+df <- bind_rows(
+  as_data_frame(log2(counts(dds, normalized=TRUE)[, 1:2]+1)) %>%
+         mutate(transformation = "log2(x + 1)"),
+  as_data_frame(assay(vsd)[, 1:2]) %>% mutate(transformation = "vst"),
+  as_data_frame(assay(rld)[, 1:2]) %>% mutate(transformation = "rlog"))
+  
+colnames(df)[1:2] <- c("x", "y")  
+
+ggplot(df, aes(x = x, y = y)) + geom_hex(bins = 80) +
+  coord_fixed() + facet_grid( . ~ transformation)  
+```
+
+### Section 4.3: Sample distances
+```{r}
+sampleDists <- dist(t(assay(vsd)))
+sampleDists
+library("pheatmap")
+library("RColorBrewer")
+sampleDistMatrix <- as.matrix( sampleDists )
+rownames(sampleDistMatrix) <- paste( vsd$dex, vsd$cell, sep = " - " )
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows = sampleDists,
+         clustering_distance_cols = sampleDists,
+         col = colors)
+library("PoiClaClu")
+poisd <- PoissonDistance(t(counts(dds)))
+samplePoisDistMatrix <- as.matrix( poisd$dd )
+rownames(samplePoisDistMatrix) <- paste( dds$dex, dds$cell, sep=" - " )
+colnames(samplePoisDistMatrix) <- NULL
+pheatmap(samplePoisDistMatrix,
+         clustering_distance_rows = poisd$dd,
+         clustering_distance_cols = poisd$dd,
+         col = colors)
+```
+
+### Section 4.4: PCA plot
+```{r}
+plotPCA(vsd, intgroup = c("dex", "cell"))
+pcaData <- plotPCA(vsd, intgroup = c( "dex", "cell"), returnData = TRUE)
+pcaData
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(x = PC1, y = PC2, color = dex, shape = cell)) +
+  geom_point(size =3) +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  coord_fixed()
+
+```
+
+### Section 4.5: MDS plot
+```{r}
+mds <- as.data.frame(colData(vsd))  %>%
+         cbind(cmdscale(sampleDistMatrix))
+ggplot(mds, aes(x = `1`, y = `2`, color = dex, shape = cell)) +
+  geom_point(size = 3) + coord_fixed()
+mdsPois <- as.data.frame(colData(dds)) %>%
+   cbind(cmdscale(samplePoisDistMatrix))
+ggplot(mdsPois, aes(x = `1`, y = `2`, color = dex, shape = cell)) +
+  geom_point(size = 3) + coord_fixed()
+```
+
+## Section 5: Differential expression analysis
+
+
+### Section 5.1: Running the differential expression pipeline
+```{r}
+dds <- DESeq(dds)
+```
+### Section 5.2: Building the results table
+```{r}
+res <- results(dds)
+res
+# equivalent to
+res <- results(dds, contrast=c("dex","trt","untrt"))
+mcols(res, use.names = TRUE)
+summary(res)
+res.05 <- results(dds, alpha = 0.05)
+table(res.05$padj < 0.05)
+
+resLFC1 <- results(dds, lfcThreshold=1)
+table(resLFC1$padj < 0.1)
+
+```
+
+### Section 5.3: Other comparisons
+```{r}
+results(dds, contrast = c("cell", "N061011", "N61311"))
+```
+
+### Section 5.4: Multiple testing
+```{r}
+sum(res$pvalue < 0.05, na.rm=TRUE)
+sum(!is.na(res$pvalue))
+sum(res$padj < 0.1, na.rm=TRUE)
+resSig <- subset(res, padj < 0.1)
+head(resSig[ order(resSig$log2FoldChange), ])
+head(resSig[ order(resSig$log2FoldChange, decreasing = TRUE), ])
+```
+
+## Section 6: Plotting results
+### Section 6.1: Counts plot
+```{r}
+topGene <- rownames(res)[which.min(res$padj)]
+plotCounts(dds, gene = topGene, intgroup=c("dex"))
+library("ggbeeswarm")
+geneCounts <- plotCounts(dds, gene = topGene, intgroup = c("dex","cell"),
+                         returnData = TRUE)
+ggplot(geneCounts, aes(x = dex, y = count, color = cell)) +
+  scale_y_log10() +  geom_beeswarm(cex = 3)
+ggplot(geneCounts, aes(x = dex, y = count, color = cell, group = cell)) +
+  scale_y_log10() + geom_point(size = 3) + geom_line()
+```
+
+### Section 6.2: MA-plot
+```{r}
+library("apeglm")
+resultsNames(dds)
+res <- lfcShrink(dds, coef="dex_trt_vs_untrt", type="apeglm")
+plotMA(res, ylim = c(-5, 5))
+res.noshr <- results(dds, name="dex_trt_vs_untrt")
+plotMA(res.noshr, ylim = c(-5, 5))
+plotMA(res, ylim = c(-5,5))
+topGene <- rownames(res)[which.min(res$padj)]
+with(res[topGene, ], {
+  points(baseMean, log2FoldChange, col="dodgerblue", cex=2, lwd=2)
+  text(baseMean, log2FoldChange, topGene, pos=2, col="dodgerblue")
+})
+hist(res$pvalue[res$baseMean > 1], breaks = 0:20/20,
+     col = "grey50", border = "white")
+```
+
+### Section 6.3: Gene clustering
+```{r}
+library("genefilter")
+topVarGenes <- head(order(rowVars(assay(vsd)), decreasing = TRUE), 20)
+mat  <- assay(vsd)[ topVarGenes, ]
+mat  <- mat - rowMeans(mat)
+anno <- as.data.frame(colData(vsd)[, c("cell","dex")])
+pheatmap(mat, annotation_col = anno)
+```
+
+### Section 6.4: Independent filtering
+```{r}
+qs <- c(0, quantile(resLFC1$baseMean[resLFC1$baseMean > 0], 0:6/6))
+bins <- cut(resLFC1$baseMean, qs)
+levels(bins) <- paste0("~", round(signif((qs[-1] + qs[-length(qs)])/2, 2)))
+fractionSig <- tapply(resLFC1$pvalue, bins, function(p)
+                          mean(p < .05, na.rm = TRUE))
+barplot(fractionSig, xlab = "mean normalized count",
+                     ylab = "fraction of small p values")
+
+```
+
+## Section 7: Annotating and exporting results
+```{r}
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+columns(org.Hs.eg.db)
+res$symbol <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res),
+                     column="SYMBOL",
+                     keytype="ENSEMBL",
+                     multiVals="first")
+res$entrez <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res),
+                     column="ENTREZID",
+                     keytype="ENSEMBL",
+                     multiVals="first")
+resOrdered <- res[order(res$pvalue),]
+head(resOrdered)
+```
+
+### Section 7.1: Exporting results
+```{r}
+resOrderedDF <- as.data.frame(resOrdered)[1:100, ]
+write.csv(resOrderedDF, file = "results.csv")
+library("ReportingTools")
+htmlRep <- HTMLReport(shortName="report", title="My report",
+                      reportDirectory="./report")
+publish(resOrderedDF, htmlRep)
+url <- finish(htmlRep)
+browseURL(url)
+```
+
+## GLUE SECTION: Generating gene sets for GO analysis
+We'll be starting from the resLFC1 (|log2foldchange| > 1) results object from section 5.2, annotating it, and filtering for adjusted p-value < 0.1 
+```{r}
+resLFC1
+
+# attach the gene symbols and entrez IDs to resLFC1 as in Section 7
+resLFC1$symbol <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res),
+                     column="SYMBOL",
+                     keytype="ENSEMBL",
+                     multiVals="first")
+resLFC1$entrez <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res),
+                     column="ENTREZID",
+                     keytype="ENSEMBL",
+                     multiVals="first")
+
+# restrict by the padj <0.1 filter to the resLFC1 results
+resLFC1Sig <- subset(resLFC1, padj < 0.1)
+resLFC1Sig
+
+resLFC1Sig_DF <- resLFC1Sig %>%
+  as.data.frame() %>% 
+  tibble::rownames_to_column(var="Ensembl")
+table(resLFC1Sig_DF$log2FoldChange>0)
+
+# make the Up and Down subsets
+resLFC1Sig_DFup <- subset(resLFC1Sig_DF, log2FoldChange > 0) 
+resLFC1Sig_DFdown <- subset(resLFC1Sig_DF, log2FoldChange < 0) 
+
+# write the up and down subsets using readr::write_tsv
+library(readr)
+write_tsv(resLFC1Sig_DFup, path = "resLFC1Sig_DFup.tsv")
+write_tsv(resLFC1Sig_DFdown, path = "resLFC1Sig_DFdown.tsv")
+```
+
+### Section 7.2: Plotting fold changes in genomic space
+### Section 8.2: Removing hidden batch effects
+### Section 8.1: Using SVA with DESeq2
+### Section 8.2: Using RUV with DESeq2

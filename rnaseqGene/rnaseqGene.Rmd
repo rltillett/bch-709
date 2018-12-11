@@ -8,9 +8,9 @@ output: html_notebook
 For this script to function properly, install the rnaseqGene package from bioconductor
 ```{r dont_run}
 # For this script to function properly, install the rnaseqGene package from bioconductor using the commands directly below:
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("rnaseqGene", version = "3.8")
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+# BiocManager::install("rnaseqGene", version = "3.8")
 ```
 
 
@@ -132,6 +132,15 @@ nrow(dds)
 dds <- dds[ rowSums(counts(dds)) > 1, ]
 nrow(dds)
 
+```
+
+
+
+nrow(dds)
+[compare the presented filter with the one used in the BAD days Day 3 workflow](https://bitsandchips.me/BAD_days/RNA-sequencing.html#data-pre-processing)
+
+### Section 4.2: The variance stabilizing transformation and the rlog
+```{r}
 lambda <- 10^seq(from = -1, to = 2, length = 1000)
 cts <- matrix(rpois(1000*100, lambda), ncol = 100)
 library("vsn")
@@ -151,27 +160,64 @@ rld <- rlog(dds, blind = FALSE)
 head(assay(rld), 3)
 ```
 
-
-
-nrow(dds)
-[compare the presented filter with the one used in the BAD days Day 3 workflow](https://bitsandchips.me/BAD_days/RNA-sequencing.html#data-pre-processing)
-
-### Section 4.2: The variance stabilizing transformation and the rlog
 ### Section 4.3: Sample distances
+```{r}
+
+```
 ### Section 4.4: PCA plot
+```{r}
+
+```
 ### Section 4.5: MDS plot
+_omitting due to time & rough similarity to PCA_
+
 ## Section 5: Differential expression analysis
 ### Section 5.1: Running the differential expression pipeline
+```{r}
+
+```
+
 ### Section 5.2: Building the results table
+```{r}
+
+```
 ### Section 5.3: Other comparisons
+_omitting for time_
 ### Section 5.4: Multiple testing
+```{r}
+
+```
+
 ## Section 6: Plotting results
 ### Section 6.1: Counts plot
+```{r}
+
+```
 ### Section 6.2: MA-plot
+```{r}
+
+```
+
 ### Section 6.3: Gene clustering
+heatmaps
+```{r}
+
+```
+
 ### Section 6.4: Independent filtering
-## Section 7: Annotating and exporting results
+_omitting for time_
+## Section 7: Annotating and exporting 
+Adding HGNC gene symbols and Entrez IDs to our results (res)
+```{r}
+
+```
+
 ### Section 7.1: Exporting results
+Convert `res` to a data frame and write to csv
+```{r}
+
+```
+
 ### Section 7.2: Plotting fold changes in genomic space
 ### Section 8.2: Removing hidden batch effects
 ### Section 8.1: Using SVA with DESeq2
